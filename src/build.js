@@ -398,6 +398,7 @@ function page(file, title, desc, active, body) {
 const c = D.contact;
 
 const homeHero = `<section class="hero">
+  <div class="aurora" aria-hidden="true"><div class="aurora-layer"></div></div>
   <div class="container hero-grid">
     <div class="hero-copy">
       <span class="hero-pill" data-hero="1">${icon("map-pin")} Birmingham's trusted local cleaning experts</span>
