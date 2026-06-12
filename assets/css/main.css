@@ -541,7 +541,6 @@ html.js [data-reveal].revealed { opacity: 1; transform: none; }
 .t-col-track { display: flex; flex-direction: column; gap: 1.5rem; padding-bottom: 1.5rem; }
 @media (prefers-reduced-motion: no-preference) {
   .t-col-track { animation: t-scroll var(--dur, 15s) linear infinite; }
-  .t-columns:hover .t-col-track { animation-play-state: paused; }
 }
 @media (prefers-reduced-motion: reduce) {
   .t-col-track > [aria-hidden] { display: none; }
