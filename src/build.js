@@ -325,6 +325,29 @@ function reviewsRail() {
   </div>`;
 }
 
+function testimonialColumns() {
+  const tCard = (r, i, hidden) => {
+    const initials = r.name.split(" ").map((w) => w[0]).slice(0, 2).join("").toUpperCase();
+    return `<figure class="t-card"${hidden ? ' aria-hidden="true"' : ""}>
+      <div class="stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <blockquote>&ldquo;${r.text}&rdquo;</blockquote>
+      <figcaption><span class="avatar" style="background:${AVATAR_COLORS[i % AVATAR_COLORS.length]}">${initials}</span> ${r.name}</figcaption>
+    </figure>`;
+  };
+  const cols = [
+    { items: D.reviews.slice(0, 4), dur: "21s", offset: 0 },
+    { items: D.reviews.slice(4, 7), dur: "26s", offset: 4 },
+    { items: D.reviews.slice(7, 10), dur: "23s", offset: 7 },
+  ];
+  return `<div class="t-columns">
+    ${cols.map((c) => {
+      const set = c.items.map((r, i) => tCard(r, i + c.offset, false)).join("");
+      const dupe = c.items.map((r, i) => tCard(r, i + c.offset, true)).join("");
+      return `<div class="t-col"><div class="t-col-track" style="--dur:${c.dur}">${set}${dupe}</div></div>`;
+    }).join("")}
+  </div>`;
+}
+
 function featureList(features) {
   return `<div class="feature-list">
     ${features.map((f, i) => `
@@ -496,12 +519,12 @@ const homeWhy = `<section class="section">
 
 const homeReviews = `<section class="section bg-white">
   <div class="container">
-    <div class="section-head" data-reveal>
+    <div class="section-head center" data-reveal>
       <h2 class="h2">Real stories, real satisfaction</h2>
       <p class="lead">From improved hygiene to enhanced productivity, here's what our customers say.</p>
     </div>
-    ${reviewsRail()}
-    <div data-reveal><a class="text-link" href="reviews.html">Read all reviews ${icon("arrow-right")}</a></div>
+    <div data-reveal>${testimonialColumns()}</div>
+    <div data-reveal style="text-align:center; margin-top:1.5rem"><a class="text-link" href="reviews.html">Read all reviews ${icon("arrow-right")}</a></div>
   </div>
 </section>`;
 
